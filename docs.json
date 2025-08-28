@@ -8,6 +8,10 @@
     "dark": "#7F1D1D"
   },
   "favicon": "/favicon.ico",
+  "font": {
+    "headings": "Inter",
+    "body": "Inter"
+  },
   "navigation": {
     "tabs": [
       {
