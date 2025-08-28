@@ -1,76 +1,192 @@
 ---
-title: "Claude Code setup"
-description: "Configure Claude Code for your documentation workflow"
+title: "Claude Code"
+description: "Give Claude Code perfect memory with ShadowGit"
 icon: "asterisk"
 ---
 
-Claude Code is Anthropic's official CLI tool. This guide will help you set up Claude Code to help you write and maintain your documentation.
-
 ## Prerequisites
 
-- Active Claude subscription (Pro, Max, or API access)
+- Claude Code installed ([Get Claude Code](https://claude.ai/download))
+- Node.js 18+ installed
+- ShadowGit desktop app running with tracked repositories
 
-## Setup
+## Quick Setup
 
-1. Install Claude Code globally:
+Install and configure ShadowGit in one command:
 
-  ```bash
-  npm install -g @anthropic-ai/claude-code
+```bash
+# Install MCP server globally
+npm install -g shadowgit-mcp-server
+
+# Add to Claude Code
+claude mcp add shadowgit -- shadowgit-mcp-server
+
+# Restart Claude Code
 ```
 
-2. Navigate to your docs directory.
-3. (Optional) Add the `CLAUDE.md` file below to your project.
-4. Run `claude` to start.
+That's it. Claude now has perfect memory of your code changes.
 
-## Create `CLAUDE.md`
+## Verify Installation
 
-Create a `CLAUDE.md` file at the root of your documentation repository to train Claude Code on your specific documentation standards:
+Ask Claude:
+```
+Can you list my ShadowGit repositories?
+```
 
-````markdown
-# Mintlify documentation
+Claude should respond with your tracked repositories. If not, see troubleshooting below.
 
-## Working relationship
-- You can push back on ideas-this can lead to better documentation. Cite sources and explain your reasoning when you do so
-- ALWAYS ask for clarification rather than making assumptions
-- NEVER lie, guess, or make up information
+## What Claude can now do
 
-## Project context
-- Format: MDX files with YAML frontmatter
-- Config: docs.json for navigation, theme, settings
-- Components: Mintlify components
+### Debug recent changes
+```
+Claude, what changed in my auth.ts file in the last hour?
+```
 
-## Content strategy
-- Document just enough for user success - not too much, not too little
-- Prioritize accuracy and usability of information
-- Make content evergreen when possible
-- Search for existing information before adding new content. Avoid duplication unless it is done for a strategic reason
-- Check existing patterns for consistency
-- Start by making the smallest reasonable changes
+### Find when bugs appeared
+```
+Claude, when did the login function last work correctly?
+```
 
-## Frontmatter requirements for pages
-- title: Clear, descriptive page title
-- description: Concise summary for SEO/navigation
+### Understand code evolution
+```
+Claude, show me how the payment processing evolved this week
+```
 
-## Writing standards
-- Second-person voice ("you")
-- Prerequisites at start of procedural content
-- Test all code examples before publishing
-- Match style and formatting of existing pages
-- Include both basic and advanced use cases
-- Language tags on all code blocks
-- Alt text on all images
-- Relative paths for internal links
+### Compare implementations
+```
+Claude, what approach worked better - yesterday's or today's refactor?
+```
 
-## Git workflow
-- NEVER use --no-verify when committing
-- Ask how to handle uncommitted changes before starting
-- Create a new branch when no clear branch exists for changes
-- Commit frequently throughout development
-- NEVER skip or disable pre-commit hooks
+## Example Commands
 
-## Do not
-- Skip frontmatter on any MDX file
-- Use absolute URLs for internal links
-- Include untested code examples
-- Make assumptions - always ask for clarification
-````
+Claude can now execute these commands for you:
+
+```javascript
+// See recent commits
+await shadowgit.git({
+  repo: "my-app",
+  command: "log --oneline -20"
+})
+
+// Check what broke
+await shadowgit.git({
+  repo: "my-app",
+  command: "diff HEAD~10 HEAD"
+})
+
+// Find who changed a line
+await shadowgit.git({
+  repo: "my-app",
+  command: "blame src/api.ts"
+})
+
+// See file history
+await shadowgit.git({
+  repo: "my-app",
+  command: "log -p -- src/components/Header.tsx"
+})
+```
+
+## Advanced Usage
+
+### Working with multiple repositories
+
+Claude can analyze across all your projects:
+
+```
+Claude, check if I've solved similar authentication issues in my other projects
+```
+
+### Time-based debugging
+
+```
+Claude, what was I working on yesterday between 2-4 PM?
+```
+
+### Pattern detection
+
+```
+Claude, do you see any patterns in when my tests fail?
+```
+
+## Troubleshooting
+
+### Claude doesn't see ShadowGit
+
+1. **Restart Claude Code** after adding the MCP server
+2. **Check installation**:
+   ```bash
+   # Verify MCP server is installed
+   npm list -g shadowgit-mcp-server
+   
+   # Test it works
+   shadowgit-mcp-server --version
+   ```
+
+### "No repositories found"
+
+1. Open ShadowGit desktop app
+2. Add at least one repository
+3. Wait for first snapshot (usually within 3 minutes)
+4. Ask Claude again
+
+### Permission errors
+
+On macOS, you might need to grant Terminal permissions:
+1. System Preferences → Security & Privacy
+2. Privacy tab → Full Disk Access
+3. Add Terminal or your terminal app
+
+### Claude can't execute git commands
+
+Make sure git is installed:
+```bash
+git --version
+```
+
+If not installed, [download Git](https://git-scm.com/downloads).
+
+## Best Practices
+
+### 1. Let ShadowGit run for a while
+The more history ShadowGit captures, the smarter Claude becomes. Let it run for at least a day before expecting deep insights.
+
+### 2. Be specific with time ranges
+Instead of "recent changes", say "changes in the last 2 hours" or "changes from yesterday".
+
+### 3. Use repository names
+Always specify which repository when you have multiple:
+```
+Claude, in my 'frontend' repo, what changed in the last hour?
+```
+
+### 4. Combine with file context
+Claude Code already reads your files. ShadowGit adds the history dimension:
+```
+Claude, looking at this error and my recent changes, what broke?
+```
+
+## Security
+
+- **Read-only**: Claude can only read history, never modify code
+- **Local only**: No code leaves your machine
+- **Safe commands**: Only non-destructive git commands allowed
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card
+    title="Installation Guide"
+    icon="download"
+    href="/installation"
+  >
+    General installation instructions
+  </Card>
+  <Card
+    title="Cursor Setup"
+    icon="code-simple"
+    href="/ai-tools/cursor"
+  >
+    Configure Cursor with ShadowGit
+  </Card>
+</CardGroup>

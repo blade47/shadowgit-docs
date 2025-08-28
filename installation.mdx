@@ -1,0 +1,148 @@
+---
+title: "Installation"
+description: "Set up ShadowGit MCP server in 2 minutes"
+---
+
+## Prerequisites
+
+Before you begin, make sure you have:
+
+1. **Node.js 18+** installed ([Download Node.js](https://nodejs.org))
+2. **ShadowGit desktop app** running with at least one tracked repository ([Download ShadowGit](https://shadowgit.com))
+3. **An AI tool** like Claude Code or Cursor
+
+## Install the MCP Server
+
+Open your terminal and run:
+
+```bash
+npm install -g shadowgit-mcp-server
+```
+
+That's it. The MCP server is now installed globally on your system.
+
+## Configure your AI tool
+
+Once the MCP server is installed, you need to configure your AI assistant to use it. We have detailed guides for each tool:
+
+<CardGroup cols={2}>
+  <Card
+    title="Claude Code"
+    icon="asterisk"
+    href="/ai-tools/claude-code"
+  >
+    One-command setup for Claude Code
+  </Card>
+  <Card
+    title="Cursor"
+    icon="code-simple"
+    href="/ai-tools/cursor"
+  >
+    Complete Cursor configuration guide
+  </Card>
+</CardGroup>
+
+## What your AI can now do
+
+Once configured, your AI assistant can:
+
+```javascript
+// List all your tracked repositories
+await shadowgit.list_repos()
+
+// View recent commits in a project
+await shadowgit.git({
+  repo: "my-project",
+  command: "log --oneline -10"
+})
+
+// See what changed in the last hour
+await shadowgit.git({
+  repo: "my-project",
+  command: "diff HEAD~5 HEAD --stat"
+})
+
+// Find when a bug was introduced
+await shadowgit.git({
+  repo: "my-project",
+  command: "bisect start HEAD HEAD~20"
+})
+```
+
+## Troubleshooting
+
+### "No repositories found"
+
+Your ShadowGit app needs to be tracking at least one repository.
+
+1. Open ShadowGit desktop app
+2. Click the "+" button to add a repository
+3. Wait for the first snapshot to be created
+4. Try again in your AI tool
+
+### "Command not found: shadowgit-mcp-server"
+
+The npm installation might not be in your PATH.
+
+**Solution 1**: Use the full path
+```bash
+# Find where npm installed it
+npm list -g shadowgit-mcp-server
+
+# Use the full path in your config
+"command": "/usr/local/bin/shadowgit-mcp-server"
+```
+
+**Solution 2**: Reinstall with npx
+```bash
+npx shadowgit-mcp-server
+```
+
+### "Repository not found"
+
+Make sure you're using the exact repository name from ShadowGit.
+
+```javascript
+// First, list all repos to get exact names
+const repos = await shadowgit.list_repos()
+// Returns: [{ name: "my-project", path: "/Users/you/code/my-project" }]
+
+// Then use the exact name
+await shadowgit.git({
+  repo: "my-project",  // Must match exactly
+  command: "log -1"
+})
+```
+
+### Claude/Cursor doesn't see the MCP server
+
+1. Make sure you restarted the application after adding the config
+2. Check that Node.js is in your PATH: `node --version`
+3. Verify the server works manually: `shadowgit-mcp-server --version`
+
+## Security Notes
+
+- **Read-only access**: The MCP server can only read your git history, never modify it
+- **Local only**: No data is sent to any external servers
+- **Safe commands only**: Dangerous git commands are blocked (no push, merge, rebase)
+
+## Next Steps
+
+Choose your AI tool to get started:
+
+<CardGroup cols={2}>
+  <Card
+    title="Claude Code Guide"
+    icon="asterisk"
+    href="/ai-tools/claude-code"
+  >
+    Detailed setup and usage with Claude Code
+  </Card>
+  <Card
+    title="Cursor Guide"
+    icon="code-simple"
+    href="/ai-tools/cursor"
+  >
+    Complete Cursor configuration and tips
+  </Card>
+</CardGroup>

@@ -1,44 +1,145 @@
-# Mintlify Starter Kit
+# ShadowGit Documentation
 
-Use the starter kit to get your docs deployed and ready to customize.
+Official documentation for ShadowGit MCP Server - give your AI assistants perfect memory of your code changes.
 
-Click the green **Use this template** button at the top of this repo to copy the Mintlify starter kit. The starter kit contains examples with
+## What is ShadowGit?
 
-- Guide pages
-- Navigation
-- Customizations
-- API reference pages
-- Use of popular components
+ShadowGit saves every keystroke and feeds your complete code history to AI assistants like Claude and Cursor via MCP (Model Context Protocol). Your AI stops guessing and knows exactly what worked before.
 
-**[Follow the full quickstart guide](https://starter.mintlify.com/quickstart)**
+## Installation & Setup
 
-## Development
+### Prerequisites
 
-Install the [Mintlify CLI](https://www.npmjs.com/package/mint) to preview your documentation changes locally. To install, use the following command:
+- **Node.js 18+** installed ([Download Node.js](https://nodejs.org))
+- **ShadowGit desktop app** running with at least one tracked repository ([Download ShadowGit](https://shadowgit.com))
 
-```
-npm i -g mint
-```
+### Install MCP Server
 
-Run the following command at the root of your documentation, where your `docs.json` is located:
+Open your terminal and install the MCP server globally:
 
-```
-mint dev
+```bash
+npm install -g shadowgit-mcp-server
 ```
 
-View your local preview at `http://localhost:3000`.
+### Configure Your AI Tool
 
-## Publishing changes
+Choose your AI assistant and follow the setup:
 
-Install our GitHub app from your [dashboard](https://dashboard.mintlify.com/settings/organization/github-app) to propagate changes from your repo to your deployment. Changes are deployed to production automatically after pushing to the default branch.
+#### Claude Code
+```bash
+# One command setup
+claude mcp add shadowgit -- shadowgit-mcp-server
 
-## Need help?
+# Restart Claude Code
+```
 
-### Troubleshooting
+#### Claude Desktop
+1. Edit your config file:
+   - **Mac/Linux**: `~/.config/Claude/claude_desktop_config.json`
+   - **Windows**: `%APPDATA%\Claude\claude_desktop_config.json`
 
-- If your dev environment isn't running: Run `mint update` to ensure you have the most recent version of the CLI.
-- If a page loads as a 404: Make sure you are running in a folder with a valid `docs.json`.
+2. Add ShadowGit server:
+```json
+{
+  "mcpServers": {
+    "shadowgit": {
+      "command": "shadowgit-mcp-server"
+    }
+  }
+}
+```
 
-### Resources
-- [Mintlify documentation](https://mintlify.com/docs)
-- [Mintlify community](https://mintlify.com/community)
+#### Cursor
+1. Open Cursor Settings (`Cmd/Ctrl + ,`)
+2. Search for "MCP"
+3. Add configuration:
+```json
+{
+  "mcpServers": {
+    "shadowgit": {
+      "command": "shadowgit-mcp-server"
+    }
+  }
+}
+```
+
+### Verify Installation
+
+Ask your AI: **"What ShadowGit repositories do I have?"**
+
+Your AI should list your tracked repositories. If not, see troubleshooting below.
+
+## Key Benefits
+
+- **66% fewer tokens** - AI knows your history, no re-reading codebases
+- **Fix bugs in one shot** - AI sees what broke and when  
+- **Perfect memory** - Never explain context again
+- **100% local** - Your code never leaves your machine
+
+## What Your AI Can Do
+
+Once configured, your AI can:
+
+```bash
+# See recent commits
+"Show me what changed in the last hour"
+
+# Debug issues
+"When did this function last work correctly?"
+
+# Find patterns
+"What files usually change together with auth.ts?"
+
+# Time travel
+"What was I working on yesterday at 3 PM?"
+```
+
+## Documentation Structure
+
+This documentation covers:
+
+- **Getting Started**: Introduction and installation guide
+- **AI Tool Integration**: Detailed setup guides for Claude Code, Cursor, and Windsurf
+- **MCP Server**: Complete configuration and usage examples
+
+## Links
+
+- **ShadowGit Website**: [https://shadowgit.com](https://shadowgit.com)
+- **MCP Server Package**: [shadowgit-mcp-server on npm](https://www.npmjs.com/package/shadowgit-mcp-server)
+- **Support**: [support@shadowgit.com](mailto:support@shadowgit.com)
+- **Live Documentation**: [docs.shadowgit.com](https://docs.shadowgit.com)
+
+## Troubleshooting
+
+### "No repositories found"
+1. Open ShadowGit desktop app
+2. Add at least one repository (click + button)
+3. Wait for first snapshot (usually 3 minutes)
+4. Ask your AI again
+
+### "Command not found: shadowgit-mcp-server"
+```bash
+# Check if installed
+npm list -g shadowgit-mcp-server
+
+# If not found, reinstall
+npm install -g shadowgit-mcp-server
+
+# Use full path in config if needed
+which shadowgit-mcp-server
+```
+
+### AI doesn't see ShadowGit
+1. **Restart your AI application** completely after adding config
+2. **Check Node.js is installed**: `node --version`
+3. **Verify ShadowGit app is running** with tracked repositories
+
+### Permission errors (macOS)
+Grant your AI tool full disk access:
+1. System Preferences → Security & Privacy
+2. Privacy → Full Disk Access  
+3. Add your AI application (Claude, Cursor, etc.)
+
+---
+
+Transform your AI development workflow with ShadowGit. Perfect memory, instant debugging, massive token savings. 🚀

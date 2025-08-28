@@ -1,97 +1,106 @@
 ---
 title: "Introduction"
-description: "Welcome to the new home for your documentation"
+description: "Give your AI perfect memory of your code changes"
 ---
 
-## Setting up
+## What is ShadowGit?
 
-Get your documentation site up and running in minutes.
+ShadowGit saves every keystroke you type and feeds your complete code history to AI assistants like Claude and Cursor via MCP (Model Context Protocol).
+
+Your AI stops guessing. It knows exactly what worked before.
 
 <Card
-  title="Start here"
+  title="Quick Installation"
   icon="rocket"
-  href="/quickstart"
+  href="/installation"
   horizontal
 >
-  Follow our three step quickstart guide.
+  Get up and running in 2 minutes with our MCP server.
 </Card>
 
-## Make it yours
+## How it works
 
-Design a docs site that looks great and empowers your users.
+ShadowGit runs quietly in the background, creating a parallel git repository (`.shadowgit.git`) that captures every save as a commit. The MCP server then gives your AI read-only access to this detailed history.
 
-<Columns cols={2}>
+```
+your-project/
+├── .git/              # Your normal git repo
+├── .shadowgit.git/    # Automatic snapshot history (AI reads this)
+├── src/
+└── ...
+```
+
+## Why ShadowGit exists
+
+<Columns cols={3}>
   <Card
-    title="Edit locally"
-    icon="pen-to-square"
-    href="/development"
+    title="66% fewer tokens"
+    icon="coins"
   >
-    Edit your docs locally and preview them in real time.
+    Your AI knows your code history. No more re-reading entire codebases.
   </Card>
   <Card
-    title="Customize your site"
-    icon="palette"
-    href="/essentials/settings"
+    title="Fix bugs in one shot"
+    icon="crosshairs"
   >
-    Customize the design and colors of your site to match your brand.
-  </Card>
-    <Card
-    title="Set up navigation"
-    icon="map"
-    href="/essentials/navigation"
-  >
-    Organize your docs to help users find what they need and succeed with your product.
+    AI sees what broke and when. Debug in seconds, not hours.
   </Card>
   <Card
-    title="API documentation"
-    icon="terminal"
-    href="/api-reference/introduction"
+    title="Perfect memory"
+    icon="brain"
   >
-    Auto-generate API documentation from OpenAPI specifications.
+    Never explain context again. Your AI remembers everything.
   </Card>
 </Columns>
 
-## Create beautiful pages
+## Real-world impact
 
-Everything you need to create world-class documentation.
+- **Before**: Claude burns 15,000 tokens to understand your codebase
+- **After**: Claude uses 5,000 tokens and fixes the bug immediately
+
+That's not marketing. That's math.
+
+## Get started
 
 <Columns cols={2}>
   <Card
-    title="Write with MDX"
-    icon="pen-fancy"
-    href="/essentials/markdown"
+    title="Install MCP Server"
+    icon="download"
+    href="/installation"
   >
-    Use MDX to style your docs pages.
+    Set up the MCP server for Claude and Cursor in 2 minutes.
   </Card>
   <Card
-    title="Code samples"
-    icon="code"
-    href="/essentials/code"
+    title="Claude Code Setup"
+    icon="asterisk"
+    href="/ai-tools/claude-code"
   >
-    Add sample code to demonstrate how to use your product.
+    Configure Claude Code to use ShadowGit.
   </Card>
   <Card
-    title="Images"
-    icon="image"
-    href="/essentials/images"
+    title="Cursor Setup"
+    icon="code-simple"
+    href="/ai-tools/cursor"
   >
-    Display images and other media.
+    Add ShadowGit to Cursor for perfect AI memory.
   </Card>
   <Card
-    title="Reusable snippets"
-    icon="recycle"
-    href="/essentials/reusable-snippets"
+    title="Download ShadowGit"
+    icon="desktop"
+    href="https://shadowgit.com"
   >
-    Write once and reuse across your docs.
+    Get the desktop app that captures your code changes.
   </Card>
 </Columns>
 
-## Need inspiration?
+## Security & Privacy
 
-<Card
-  title="See complete examples"
-  icon="stars"
-  href="https://mintlify.com/customers"
->
-  Browse our showcase of exceptional documentation sites.
-</Card>
+- **100% local**: Your code never leaves your machine
+- **Read-only access**: AI can only read, never modify
+- **No cloud uploads**: Everything stays on your computer
+
+## Requirements
+
+- Node.js 18 or higher
+- ShadowGit desktop app (Mac or Windows)
+- An AI tool (Claude Code, Cursor, etc.)
