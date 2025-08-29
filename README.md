@@ -15,10 +15,17 @@ ShadowGit saves every keystroke and feeds your complete code history to AI assis
 
 ### Install MCP Server
 
-Open your terminal and install the MCP server globally:
-
+**Option 1: npm (Recommended)**
 ```bash
 npm install -g shadowgit-mcp-server
+```
+
+**Option 2: From GitHub**
+```bash
+git clone https://github.com/blade47/shadowgit-mcp.git
+cd shadowgit-mcp
+npm install && npm run build
+npm install -g .
 ```
 
 ### Configure Your AI Tool
@@ -105,6 +112,7 @@ This documentation covers:
 ## Links
 
 - **ShadowGit Website**: [https://shadowgit.com](https://shadowgit.com)
+- **GitHub Repository**: [https://github.com/blade47/shadowgit-mcp](https://github.com/blade47/shadowgit-mcp)
 - **MCP Server Package**: [shadowgit-mcp-server on npm](https://www.npmjs.com/package/shadowgit-mcp-server)
 - **Support**: [support@shadowgit.com](mailto:support@shadowgit.com)
 - **Live Documentation**: [docs.shadowgit.com](https://docs.shadowgit.com)
@@ -122,8 +130,12 @@ This documentation covers:
 # Check if installed
 npm list -g shadowgit-mcp-server
 
-# If not found, reinstall
+# If not found, reinstall from npm
 npm install -g shadowgit-mcp-server
+
+# Or install from GitHub
+git clone https://github.com/blade47/shadowgit-mcp.git
+cd shadowgit-mcp && npm install && npm run build && npm install -g .
 
 # Use full path in config if needed
 which shadowgit-mcp-server

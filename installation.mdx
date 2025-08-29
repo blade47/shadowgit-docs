@@ -13,10 +13,29 @@ Before you begin, make sure you have:
 
 ## Install the MCP Server
 
+### Option 1: npm (Recommended)
+
 Open your terminal and run:
 
 ```bash
 npm install -g shadowgit-mcp-server
+```
+
+### Option 2: GitHub
+
+Clone and install from the source:
+
+```bash
+# Clone the repository
+git clone https://github.com/blade47/shadowgit-mcp.git
+cd shadowgit-mcp
+
+# Install dependencies and build
+npm install
+npm run build
+
+# Install globally
+npm install -g .
 ```
 
 That's it. The MCP server is now installed globally on your system.

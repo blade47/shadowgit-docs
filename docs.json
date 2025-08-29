@@ -42,6 +42,11 @@
           "icon": "download"
         },
         {
+          "anchor": "GitHub",
+          "href": "https://github.com/blade47/shadowgit-mcp",
+          "icon": "github"
+        },
+        {
           "anchor": "Support",
           "href": "mailto:support@shadowgit.com",
           "icon": "envelope"
