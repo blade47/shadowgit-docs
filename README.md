@@ -78,7 +78,7 @@ Your AI should list your tracked repositories. If not, see troubleshooting below
 
 ## Key Benefits
 
-- **66% fewer tokens** - AI knows your history, no re-reading codebases
+- **66% faster debugging** - AI knows your history, no wasted time re-explaining
 - **Fix bugs in one shot** - AI sees what broke and when  
 - **Perfect memory** - Never explain context again
 - **100% local** - Your code never leaves your machine
@@ -154,4 +154,4 @@ Grant your AI tool full disk access:
 
 ---
 
-Transform your AI development workflow with ShadowGit. Perfect memory, instant debugging, massive token savings. 🚀
+Transform your AI development workflow with ShadowGit. Perfect memory, instant debugging, massive time savings. 🚀
