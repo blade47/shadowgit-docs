@@ -22,6 +22,8 @@ Your AI stops guessing. It knows exactly what worked before.
 
 ShadowGit runs quietly in the background, creating a parallel git repository (`.shadowgit.git`) that captures every save as a commit. The MCP server then gives your AI read-only access to this detailed history.
 
+**New: AI Session Management** - ShadowGit automatically detects when you're working with AI tools and tracks your coding sessions, giving your AI assistant better context about your development patterns and recent changes.
+
 ```
 your-project/
 ├── .git/              # Your normal git repo
@@ -109,5 +111,5 @@ That's not marketing. That's math.
 ## Requirements
 
 - Node.js 18 or higher
-- ShadowGit desktop app (Mac or Windows)
+- ShadowGit desktop app (Mac, Windows, or Linux)
 - An AI tool (Claude Code, Cursor, etc.)

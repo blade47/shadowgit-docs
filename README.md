@@ -12,6 +12,7 @@ ShadowGit saves every keystroke and feeds your complete code history to AI assis
 
 - **Node.js 18+** installed ([Download Node.js](https://nodejs.org))
 - **ShadowGit desktop app** running with at least one tracked repository ([Download ShadowGit](https://shadowgit.com))
+  - Available for Mac, Windows, and Linux
 
 ### Install MCP Server
 
@@ -81,6 +82,7 @@ Your AI should list your tracked repositories. If not, see troubleshooting below
 - **66% faster debugging** - AI knows your history, no wasted time re-explaining
 - **Fix bugs in one shot** - AI sees what broke and when  
 - **Perfect memory** - Never explain context again
+- **AI session tracking** - Automatically detects and tracks AI coding sessions for better context
 - **100% local** - Your code never leaves your machine
 
 ## What Your AI Can Do

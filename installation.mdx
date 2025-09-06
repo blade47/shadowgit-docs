@@ -9,6 +9,7 @@ Before you begin, make sure you have:
 
 1. **Node.js 18+** installed ([Download Node.js](https://nodejs.org))
 2. **ShadowGit desktop app** running with at least one tracked repository ([Download ShadowGit](https://shadowgit.com))
+   - Available for Mac, Windows, and Linux
 3. **An AI tool** like Claude Code or Cursor
 
 ## Install the MCP Server
@@ -138,6 +139,58 @@ await shadowgit.git({
 1. Make sure you restarted the application after adding the config
 2. Check that Node.js is in your PATH: `node --version`
 3. Verify the server works manually: `shadowgit-mcp-server --version`
+
+### Linux-specific notes
+
+#### Installing ShadowGit on Linux
+
+ShadowGit is distributed as an AppImage for Linux, which works on all distributions.
+
+**Prerequisites for AppImage:**
+```bash
+# Ubuntu/Debian
+sudo apt update
+sudo apt install libfuse2
+
+# Fedora
+sudo dnf install fuse fuse-libs
+
+# Arch
+sudo pacman -S fuse2
+```
+
+**Running the AppImage:**
+```bash
+# Download the AppImage (choose your architecture)
+# For Intel/AMD systems: ShadowGit-linux-x86_64-*.AppImage
+# For ARM systems: ShadowGit-linux-arm64-*.AppImage
+
+# Make it executable
+chmod +x ShadowGit-linux-*.AppImage
+
+# Run ShadowGit
+./ShadowGit-linux-*.AppImage
+```
+
+**Alternative if FUSE is not available:**
+```bash
+# Extract the AppImage
+./ShadowGit-linux-*.AppImage --appimage-extract
+
+# Run from extracted directory
+./squashfs-root/AppRun
+```
+
+#### Data Locations on Linux
+
+ShadowGit stores its data in the following locations:
+
+- **Shadow repositories**: `~/.shadowgit/`
+- **Application config**: `~/.config/ShadowGit/`
+- **Logs**: `~/.config/ShadowGit/logs/`
+- **Settings**: `~/.config/ShadowGit/config.json`
+
+Make sure you have proper read/write permissions for these directories.
 
 ## Security Notes
 
