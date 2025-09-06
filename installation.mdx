@@ -64,30 +64,40 @@ Once the MCP server is installed, you need to configure your AI assistant to use
 
 ## What your AI can now do
 
-Once configured, your AI assistant can:
+Once configured, your AI assistant can use natural language to query your code history:
 
-```javascript
-// List all your tracked repositories
-await shadowgit.list_repos()
+### Basic Commands
 
-// View recent commits in a project
-await shadowgit.git({
-  repo: "my-project",
-  command: "log --oneline -10"
-})
-
-// See what changed in the last hour
-await shadowgit.git({
-  repo: "my-project",
-  command: "diff HEAD~5 HEAD --stat"
-})
-
-// Find when a bug was introduced
-await shadowgit.git({
-  repo: "my-project",
-  command: "bisect start HEAD HEAD~20"
-})
+**List repositories:**
 ```
+"Show me my ShadowGit repositories"
+"List all tracked projects"
+```
+
+**View recent changes:**
+```
+"Show me the last 10 commits in my-project"
+"What changed in my-project in the last hour?"
+"Show me the diff between HEAD and 5 commits ago"
+```
+
+**Debug with history:**
+```
+"When did the login feature break?"
+"Show me all changes to authentication.js today"
+"What files were modified in the last 30 minutes?"
+```
+
+### Session Management (New!)
+
+**Control auto-commits:**
+```
+"Start a ShadowGit session for debugging"
+"Create a checkpoint with message 'Fixed auth bug'"
+"End the current ShadowGit session"
+```
+
+Your AI will automatically use git commands like `log`, `diff`, `show`, and `blame` to answer your questions efficiently.
 
 ## Troubleshooting
 
@@ -122,17 +132,17 @@ npx shadowgit-mcp-server
 
 Make sure you're using the exact repository name from ShadowGit.
 
-```javascript
-// First, list all repos to get exact names
-const repos = await shadowgit.list_repos()
-// Returns: [{ name: "my-project", path: "/Users/you/code/my-project" }]
-
-// Then use the exact name
-await shadowgit.git({
-  repo: "my-project",  // Must match exactly
-  command: "log -1"
-})
+First ask your AI to list repositories:
 ```
+"List my ShadowGit repositories"
+```
+
+This will show you the exact names to use. Then use the exact name when querying:
+```
+"Show me the git log for my-project"
+```
+
+The repository name must match exactly what ShadowGit shows.
 
 ### Claude/Cursor doesn't see the MCP server
 

@@ -62,32 +62,49 @@ Claude, what approach worked better - yesterday's or today's refactor?
 
 ## Example Commands
 
-Claude can now execute these commands for you:
+Ask Claude in natural language and it will use the right git commands:
 
-```javascript
-// See recent commits
-await shadowgit.git({
-  repo: "my-app",
-  command: "log --oneline -20"
-})
+**See recent commits:**
+```
+"Show me the last 20 commits in my-app"
+"What did I commit today?"
+```
 
-// Check what broke
-await shadowgit.git({
-  repo: "my-app",
-  command: "diff HEAD~10 HEAD"
-})
+**Check what broke:**
+```
+"What changed between now and 10 commits ago?"
+"Show me the diff for the last hour"
+```
 
-// Find who changed a line
-await shadowgit.git({
-  repo: "my-app",
-  command: "blame src/api.ts"
-})
+**Find who changed a line:**
+```
+"Who last modified src/api.ts?"
+"Show me the blame for the authentication file"
+```
 
-// See file history
-await shadowgit.git({
-  repo: "my-app",
-  command: "log -p -- src/components/Header.tsx"
-})
+**See file history:**
+```
+"Show me the history of Header.tsx"
+"What changes were made to the login component?"
+```
+
+## Session Management
+
+Control how ShadowGit tracks your work with Claude:
+
+**Start a session:**
+```
+"Start a ShadowGit session for this debugging task"
+```
+
+**Create checkpoints:**
+```
+"Create a ShadowGit checkpoint: Fixed authentication bug"
+```
+
+**End a session:**
+```
+"End the current ShadowGit session"
 ```
 
 ## Advanced Usage
